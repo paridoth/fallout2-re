@@ -5,6 +5,8 @@ set(EXECUTABLE_NAME fallout2-re)
 project(${EXECUTABLE_NAME})
 
 add_executable(${EXECUTABLE_NAME} WIN32
+    "src/coop/session.c"
+    "src/coop/session.h"
     "src/game/ability.c"
     "src/game/ability.h"
     "src/game/actions.c"
@@ -272,3 +274,19 @@ target_include_directories(${EXECUTABLE_NAME} PRIVATE ${FPATTERN_INCLUDE_DIR})
 add_subdirectory("third_party/zlib")
 target_link_libraries(${EXECUTABLE_NAME} ${ZLIB_LIBRARIES})
 target_include_directories(${EXECUTABLE_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})
+
+option(FALLOUT2_RE_BUILD_COOP_TESTS "Build the transport-independent co-op session tests" OFF)
+
+if(FALLOUT2_RE_BUILD_COOP_TESTS)
+    enable_testing()
+
+    add_executable(coop-session-test
+        "src/coop/session.c"
+        "src/coop/session.h"
+        "tests/coop_session_test.c"
+    )
+    target_include_directories(coop-session-test PRIVATE src)
+    set_property(TARGET coop-session-test PROPERTY C_STANDARD 11)
+    set_property(TARGET coop-session-test PROPERTY C_STANDARD_REQUIRED ON)
+    add_test(NAME coop-session-test COMMAND coop-session-test)
+endif()
