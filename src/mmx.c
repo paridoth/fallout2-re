@@ -1,5 +1,9 @@
 #include "mmx.h"
 
+#if defined(__GNUC__)
+#include <cpuid.h>
+#endif
+
 #include <string.h>
 
 #include "plib/gnw/svga.h"
@@ -9,6 +13,18 @@
 // 0x4E08A0
 bool mmxIsSupported()
 {
+#if defined(__GNUC__)
+    unsigned int eax;
+    unsigned int ebx;
+    unsigned int ecx;
+    unsigned int edx;
+
+    if (!__get_cpuid(1, &eax, &ebx, &ecx, &edx)) {
+        return false;
+    }
+
+    return (edx & bit_MMX) != 0;
+#else
     int v1;
 
     // TODO: There are other ways to determine MMX using FLAGS register.
@@ -22,6 +38,7 @@ bool mmxIsSupported()
     }
 
     return v1 != 0;
+#endif
 }
 
 // 0x4E0DB0

@@ -41,7 +41,7 @@ int GNW_wcolor[6] = {
 };
 
 // 0x51E3FC
-static unsigned char* screen_buffer = NULL;
+unsigned char* screen_buffer = NULL;
 
 // 0x6ADD90
 static int window_index[MAX_WINDOW_COUNT];

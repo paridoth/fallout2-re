@@ -90,7 +90,7 @@ static void doRightButtonProc(int btn, int mouseEvent);
 static void doRightButtonRelease(int btn, int keyCode);
 static void setButtonGFX(int width, int height, unsigned char* normal, unsigned char* pressed, unsigned char* a5);
 static void redrawButton(ManagedButton* button);
-static void removeProgramReferences(Program* program);
+static void window_removeProgramReferences(Program* program);
 
 // 0x51DCAC
 static int holdTime = 250;
@@ -1585,7 +1585,7 @@ int windowGetYres()
 }
 
 // 0x4B9058
-static void removeProgramReferences(Program* program)
+static void window_removeProgramReferences(Program* program)
 {
     for (int index = 0; index < MANAGED_WINDOW_COUNT; index++) {
         ManagedWindow* managedWindow = &(windows[index]);
@@ -1624,7 +1624,7 @@ void initWindow(int resolution, int a2)
     int rc;
     int i, j;
 
-    interpretRegisterProgramDeleteCallback(removeProgramReferences);
+    interpretRegisterProgramDeleteCallback(window_removeProgramReferences);
 
     currentTextColorR = 0;
     currentTextColorG = 0;

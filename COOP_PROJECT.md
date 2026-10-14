@@ -56,3 +56,18 @@ cmake -S . -B build -DFALLOUT2_RE_BUILD_COOP_TESTS=ON
 cmake --build build --target coop-session-test
 ctest --test-dir build -R coop-session-test --output-on-failure
 ```
+
+For a 32-bit Windows build, install the `gcc-mingw-w64-i686` toolchain and
+configure with the checked-in toolchain file:
+
+```sh
+cmake -S . -B build-win32 \
+  -DCMAKE_TOOLCHAIN_FILE=cmake/mingw-i686.cmake \
+  -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build-win32 --parallel
+```
+
+The resulting `fallout2-re.exe` can be copied beside the legally installed
+Fallout 2 data files. The Steam installation used during development is
+`/home/josh/.local/share/Steam/steamapps/common/Fallout 2`; it remains outside
+the repository.

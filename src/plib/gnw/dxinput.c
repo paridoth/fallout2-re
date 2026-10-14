@@ -32,7 +32,7 @@ static const DIOBJECTDATAFORMAT dfDIMouse[] = {
 };
 
 // 0x4FCF00
-static const DIDATAFORMAT c_dfDIMouse = {
+static const DIDATAFORMAT fallout_c_dfDIMouse = {
     sizeof(DIDATAFORMAT),
     sizeof(DIOBJECTDATAFORMAT),
     DIDF_RELAXIS,
@@ -302,7 +302,7 @@ static const DIOBJECTDATAFORMAT dfDIKeyboard[] = {
 };
 
 // 0x4FDF20
-static const DIDATAFORMAT c_dfDIKeyboard = {
+static const DIDATAFORMAT fallout_c_dfDIKeyboard = {
     sizeof(DIDATAFORMAT),
     sizeof(DIOBJECTDATAFORMAT),
     DIDF_RELAXIS,
@@ -531,7 +531,7 @@ static bool dxinput_mouse_init()
         goto err;
     }
 
-    hr = IDirectInputDevice_SetDataFormat(lpDirectInputMouse, &c_dfDIMouse);
+    hr = IDirectInputDevice_SetDataFormat(lpDirectInputMouse, &fallout_c_dfDIMouse);
     if (hr != DI_OK) {
         goto err;
     }
@@ -571,7 +571,7 @@ static bool dxinput_keyboard_init()
         goto err;
     }
 
-    hr = IDirectInputDevice_SetDataFormat(lpDirectInputKeyboard, &c_dfDIKeyboard);
+    hr = IDirectInputDevice_SetDataFormat(lpDirectInputKeyboard, &fallout_c_dfDIKeyboard);
     if (hr != DI_OK) {
         goto err;
     }

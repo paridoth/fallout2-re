@@ -13,6 +13,10 @@
 #include "plib/gnw/svga.h"
 #include "plib/gnw/winmain.h"
 
+#ifndef DIK_PREVTRACK
+#define DIK_PREVTRACK (0x90)
+#endif
+
 typedef struct GNW95RepeatStruct {
     // Time when appropriate key was pressed down or -1 if it's up.
     TOCKS time;

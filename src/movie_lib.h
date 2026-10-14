@@ -7,6 +7,7 @@
 #define DIRECTDRAW_VERSION 0x0300
 #include <ddraw.h>
 #include <mmreg.h>
+#include <mmsystem.h>
 
 #define DIRECTSOUND_VERSION 0x0300
 #include <dsound.h>

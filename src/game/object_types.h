@@ -1,6 +1,8 @@
 #ifndef FALLOUT_GAME_OBJECT_TYPES_H_
 #define FALLOUT_GAME_OBJECT_TYPES_H_
 
+#include <assert.h>
+
 // Rotation
 typedef enum Rotation {
     ROTATION_NE, // 0

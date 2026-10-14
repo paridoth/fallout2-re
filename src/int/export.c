@@ -28,7 +28,7 @@ static ExternalProcedure* findProc(const char* identifier);
 static ExternalProcedure* findEmptyProc(const char* identifier);
 static ExternalVariable* findVar(const char* identifier);
 static ExternalVariable* findEmptyVar(const char* identifier);
-static void removeProgramReferences(Program* program);
+static void export_removeProgramReferences(Program* program);
 
 // 0x570C00
 static ExternalProcedure procHashTable[1013];
@@ -320,7 +320,7 @@ int exportExportVariable(Program* program, const char* identifier)
 }
 
 // 0x4414FC
-static void removeProgramReferences(Program* program)
+static void export_removeProgramReferences(Program* program)
 {
     for (int index = 0; index < 1013; index++) {
         ExternalProcedure* externalProcedure = &(procHashTable[index]);
@@ -334,7 +334,7 @@ static void removeProgramReferences(Program* program)
 // 0x44152C
 void initExport()
 {
-    interpretRegisterProgramDeleteCallback(removeProgramReferences);
+    interpretRegisterProgramDeleteCallback(export_removeProgramReferences);
 }
 
 // 0x441538

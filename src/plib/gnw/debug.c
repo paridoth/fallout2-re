@@ -34,6 +34,7 @@ static DebugPrintProc* debug_func = NULL;
 void GNW_debug_init()
 {
     atexit(debug_exit);
+    debug_register_env();
 }
 
 // 0x4C6CDC
@@ -53,7 +54,7 @@ void debug_register_mono()
 // 0x4C6D18
 void debug_register_log(const char* fileName, const char* mode)
 {
-    if ((mode[0] == 'w' && mode[1] == 'a') && mode[1] == 't') {
+    if (mode[0] == 'w' && mode[1] == 't') {
         if (fd != NULL) {
             fclose(fd);
         }

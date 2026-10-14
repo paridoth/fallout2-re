@@ -130,8 +130,6 @@ extern int art_mapper_blank_tile;
 
 extern Cache art_cache;
 extern HeadDescription* head_info;
-extern int* anon_alias;
-extern int* artCritterFidShouldRunData;
 
 int art_init();
 void art_reset();

@@ -521,35 +521,35 @@ int tile_set_center(int tile, int flags)
         }
     }
 
-    int tile_x = grid_width - 1 - tile % grid_width;
-    int tile_y = tile / grid_width;
+    int newTileX = grid_width - 1 - tile % grid_width;
+    int newTileY = tile / grid_width;
 
     if (borderInitialized) {
-        if (tile_x <= tile_border.ulx || tile_x >= tile_border.lrx || tile_y <= tile_border.uly || tile_y >= tile_border.lry) {
+        if (newTileX <= tile_border.ulx || newTileX >= tile_border.lrx || newTileY <= tile_border.uly || newTileY >= tile_border.lry) {
             return -1;
         }
     }
 
-    tile_y = tile_y;
     tile_offx = (buf_width - 32) / 2;
-    tile_x = tile_x;
     tile_offy = (buf_length - 16) / 2;
 
-    if (tile_x & 1) {
-        tile_x -= 1;
+    if (newTileX & 1) {
+        newTileX -= 1;
         tile_offx -= 32;
     }
 
-    square_x = tile_x / 2;
-    square_y = tile_y / 2;
+    square_x = newTileX / 2;
+    square_y = newTileY / 2;
     square_offx = tile_offx - 16;
     square_offy = tile_offy - 2;
 
-    if (tile_y & 1) {
+    if (newTileY & 1) {
         square_offy -= 12;
         square_offx -= 16;
     }
 
+    tile_x = newTileX;
+    tile_y = newTileY;
     tile_center_tile = tile;
 
     if ((flags & TILE_SET_CENTER_REFRESH_WINDOW) != 0) {

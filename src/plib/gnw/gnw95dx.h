@@ -10,6 +10,7 @@
 #define DIRECTINPUT_VERSION 0x0300
 #include <dinput.h>
 #include <mmreg.h>
+#include <mmsystem.h>
 
 #define DIRECTSOUND_VERSION 0x0300
 #include <dsound.h>

@@ -2,11 +2,12 @@ cmake_minimum_required(VERSION 3.13)
 
 set(EXECUTABLE_NAME fallout2-re)
 
-project(${EXECUTABLE_NAME})
+project(${EXECUTABLE_NAME} LANGUAGES C)
 
 add_executable(${EXECUTABLE_NAME} WIN32
     "src/coop/session.c"
     "src/coop/session.h"
+    "src/compat.h"
     "src/game/ability.c"
     "src/game/ability.h"
     "src/game/actions.c"
@@ -255,6 +256,15 @@ add_executable(${EXECUTABLE_NAME} WIN32
     "src/sound_decoder.c"
     "src/sound_decoder.h"
 )
+
+set_property(TARGET ${EXECUTABLE_NAME} PROPERTY C_STANDARD 11)
+set_property(TARGET ${EXECUTABLE_NAME} PROPERTY C_STANDARD_REQUIRED ON)
+
+if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(${EXECUTABLE_NAME} PRIVATE
+        "-include${CMAKE_CURRENT_SOURCE_DIR}/src/compat.h"
+    )
+endif()
 
 target_include_directories(${EXECUTABLE_NAME} PUBLIC src)
 
